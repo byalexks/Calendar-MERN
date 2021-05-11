@@ -1,5 +1,8 @@
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "moment/locale/es";
 import React, { useState } from 'react'
 import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux';
 import {Calendar, momentLocalizer} from 'react-big-calendar'
 
 import { Navbar } from '../ui/Navbar'
@@ -7,36 +10,28 @@ import { messages } from '../../helpers/messages';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import "moment/locale/es";
+import { uiOpenModal } from '../actions/ui';
+import { eventSetActive } from '../actions/events';
+import { AddNewFab } from '../ui/AddNewFab';
 
 moment.locale('es')
 const localizer = momentLocalizer(moment) // or globalizeLocalizer
  
-const events = [
-    {
-      title: "Cumpleaños mio",
-      start: moment().toDate(),
-      end: moment().add(2, "hours").toDate(),
-      bgcolor: '#fafafa',
-      notes: 'compra el pastel',
-      user:{
-        _id: '123',
-        name:'Alexis'
-      }
-    },
-  ];
-
 export const CalendarScreen = () => {
 
+  const dispatch = useDispatch()
+  
+  const {events} = useSelector(state => state.calendar)
+  
   const [lastView, setLastView] = useState(localStorage.getItem("lastView") || 'month');
 
     const onDoubleClick = (e)=>{
-      console.log(e);
+      dispatch( uiOpenModal() )
     }
 
     const onSelectEvent = (e) => {
-      console.log(e);
+      dispatch( eventSetActive(e) )
+     
     };
 
     const onViewChange = (e) =>{
@@ -80,7 +75,7 @@ export const CalendarScreen = () => {
           }}
         />
 
-        
+        <AddNewFab />
         <CalendarModal />
       </div>
     );
