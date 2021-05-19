@@ -10,8 +10,8 @@ import { messages } from '../../helpers/messages';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 
-import { uiOpenModal } from '../actions/ui';
-import { eventClearActiveEvent, eventSetActive } from '../actions/events';
+import { uiOpenModal } from '../../actions/ui';
+import { eventClearActiveEvent, eventSetActive } from '../../actions/events';
 import { AddNewFab } from '../ui/AddNewFab';
 import { DeleteEventFab } from "../ui/DeleteEventFab";
 
