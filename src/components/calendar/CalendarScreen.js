@@ -45,6 +45,7 @@ export const CalendarScreen = () => {
       dispatch( eventClearActiveEvent() ) 
       // TODO: deberia click para crear un evento
       // dispatch( uiOpenModal(e) )
+      
     }
     
     const eventPropGetter = ( event, start, end, isSelected ) =>{
