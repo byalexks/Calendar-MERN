@@ -6,7 +6,7 @@ import Modal from "react-modal";
 
 import { useDispatch, useSelector } from "react-redux";
 import { uiCloseModal } from "../../actions/ui";
-import { eventAddNew, eventClearActiveEvent, eventUpdated } from "../../actions/events";
+import { eventClearActiveEvent, eventStartUpdated, startAddNew } from "../../actions/events";
 
 const customStyles = {
   content: {
@@ -104,16 +104,9 @@ export const CalendarModal = () => {
 
     // TODO: realizar grabacion db
     if (activeEvent) {
-      dispatch(eventUpdated(formValues))
+      dispatch( eventStartUpdated(formValues) )
     }else{
-      dispatch( eventAddNew({
-        ...formValues,
-        id: new Date().getTime(),
-        user:{
-          _id: '123',
-          name:'Alexis'
-        }
-      }) );
+      dispatch( startAddNew(formValues) )
   }
 
     setTitleValid(true);

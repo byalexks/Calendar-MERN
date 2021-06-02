@@ -52,7 +52,6 @@ export const startChecking = () => {
   return async (dispatch) => {
     const resp = await fetchConToken("auth/renew");
     const body = await resp.json();
-    console.log(body);
 
     if (body.ok) {
       localStorage.setItem("token", body.user.token);
@@ -77,4 +76,18 @@ const checkingFinish = () => ({
 const login = (user) => ({
   type: types.authLogin,
   payload: user,
+});
+
+export const startLogout = () =>{
+  return (dispatch) =>{
+
+    localStorage.clear();
+    dispatch(logout())
+
+  }
+}
+
+const logout = () => ({
+  type: types.authLogout,
+
 });

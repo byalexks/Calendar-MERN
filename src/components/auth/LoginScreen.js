@@ -24,20 +24,18 @@ export const LoginScreen = () => {
 
   const hanldeLogin = (e) => {
     e.preventDefault();
-    dispatch( startLogin(lEmail, lPassword) );
+    dispatch(startLogin(lEmail, lPassword));
   };
 
-  const handleRegister = (e) =>{
+  const handleRegister = (e) => {
     e.preventDefault();
-    
+
     if (rPassword !== rPassword2) {
-      return Swal.fire('Error', 'las contraseñas deben ser iguales' , 'error')
+      return Swal.fire("Error", "las contraseñas deben ser iguales", "error");
     }
 
-    dispatch( startRegister( rEmail, rPassword, rName) ); 
-  }
-
-
+    dispatch(startRegister(rEmail, rPassword, rName));
+  };
 
   return (
     <div className="container login-container">
@@ -70,10 +68,10 @@ export const LoginScreen = () => {
             </div>
           </form>
         </div>
-
+        {/* registro */}
         <div className="col-md-6 login-form-2">
           <h3>Registro</h3>
-          <form onSubmit={ handleRegister }>
+          <form onSubmit={handleRegister}>
             <div className="form-group">
               <input
                 type="text"
